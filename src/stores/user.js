@@ -21,7 +21,7 @@ const useUserStore = defineStore('user', () => {
   ])
   
   const login = (payload) => {
-    const result = users.value.find(user => user.first_name === payload.first_name && user.last_name === payload.last_name)
+    const result = users.value.find(user => user.first_name === payload.first_name)
     if (result) {
       user.value = result
       localStorage.setItem('user', user.value.id)
@@ -38,7 +38,7 @@ const useUserStore = defineStore('user', () => {
 
   const getAuthUser = (permissions = []) => {
     if(localStorage.getItem('user')) {
-      const result = users.value.at(localStorage.getItem('user'))
+      const result = users.value.find(user => user.id === localStorage.getItem('user'))
       user.value = result
       user.value.isPermitted = permissions.includes(user.value.type)
     }

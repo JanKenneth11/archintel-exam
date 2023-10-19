@@ -77,6 +77,8 @@ const navItems = ref([
 ])
 onMounted(() => {
   navItems.value.filter(item => item.permission = item.permission.includes(userStore.user.type))
+  console.log(navItems.value)
+  console.log(userStore.user)
 })
 const logout = () => {
   userStore.logout()
